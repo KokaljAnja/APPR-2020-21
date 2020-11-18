@@ -5,6 +5,11 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2020/21
 * [![Shiny](http://mybinder.org/badge.svg)](http://mybinder.org/v2/gh/KokaljAnja/APPR-2020-21/master?urlpath=shiny/APPR-2020-21/projekt.Rmd) Shiny
 * [![RStudio](http://mybinder.org/badge.svg)](http://mybinder.org/v2/gh/KokaljAnja/APPR-2020-21/master?urlpath=rstudio) RStudio
 
+# Analiza stanovanjskih razmer v Sloveniji
+
+V svoji analizi bom obravnavala pregled nedavne stanovanjske statisitike v Sloveniji, s posebnim poudarkom na vrstah stanovanj, stanovanjskem razmerju (lastništvo ali najem), ter kakovosti in dostopnosti stanovanj. Prav tako bom primerjala kakovost življenja oziroma stanovanj s cenovno dostopnostjo stanovanj. Večina podatkov, ki jih bom uporabljala za projektno nalogo se nahajajo na spletni strani SiStat (Vir: https://pxweb.stat.si/SiStat/sl) in SURS (Vir: https://www.stat.si/statweb). Za konec pa bi rada slovenske razmere stanovanj tudi primerjala z državami Evropske Unije, katere podatke najemo na EuroStatu (Vir: https://ec.europa.eu/eurostat/home).
+
+
 ## Tematika
 
 Izbrali si boste temo, s katero se bo vaš projekt ukvarjal.

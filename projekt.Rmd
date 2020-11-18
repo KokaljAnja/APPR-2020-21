@@ -1,6 +1,6 @@
 ---
-title: "Poročilo pri predmetu Analiza podatkov s programom R"
-author: "Študent FMF"
+title: "Analiza stanovanjskih razmer v Sloveniji"
+author: "Anja Kokalj"
 output:
   html_document: default
   pdf_document:
@@ -26,7 +26,7 @@ source("lib/rstudio.r", encoding="UTF-8")
 
 Za vzorec bomo prikazali nekaj podatkov o slovenskih občinah.
 
-![](slike/grb.png)
+![](slike/crnahisa.png)
 
 ***
 
