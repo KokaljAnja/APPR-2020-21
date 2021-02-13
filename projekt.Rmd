@@ -36,8 +36,7 @@ Za vzorec bomo prikazali nekaj podatkov o slovenskih občinah.
 source("uvoz/uvoz.r", encoding="UTF-8")
 ```
 
-Uvozili smo podatke o občinah v obliki CSV s statističnega urada ter v obliki HTML
-z Wikipedije. Podatke imamo v dveh razpredelnicah v obliki *tidy data*.
+Uvozila sem podatke o stanovanjskih razmerah v obliki CSV in html s statističnega. Podatke imamo v dveh razpredelnicah v obliki *tidy data*.
 
 1. `druzine` - podatki o družinah za vsako občino
   - `obcina` - spremenljivka: ime občine (neurejen faktor),
@@ -71,6 +70,12 @@ ggplot(obcine, aes(x=naselja)) + geom_histogram() +
 ```{r vizualizacija, results='hide'}
 source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 ```
+
+
+```{r graf_povprecja_po_regijah, echo=FALSE, fig.align='center'}
+graf_povprecja_po_regijah
+```
+
 
 Spodnji zemljevid prikazuje povprečno velikost družine za vsako občino.
 
