@@ -2,7 +2,7 @@ library(readr)
 library(tidyr)
 library(dplyr)
 
-#sl <- locale("sl", decimal_mark=",", grouping_mark=".")
+sl <- locale("sl", decimal_mark=",", grouping_mark=".")
 
 tabela1 <- read_csv2("podatki/Tabela_1.csv", skip = 1, 
                      col_names = c("regija", "tip lastništva", "vrsta stavbe", "leto", "Število prebivalcev"),

@@ -1,5 +1,5 @@
 ---
-title: "Analiza stanovanjskih razmer v Sloveniji"
+title: "Poročilo pri predmetu Analiza podatkov s programom R"
 author: "Anja Kokalj"
 output:
   html_document: default
@@ -22,9 +22,9 @@ source("lib/libraries.r", encoding="UTF-8")
 source("lib/rstudio.r", encoding="UTF-8")
 ```
 
-# Izbira teme
+# Analiza stanovanjskih razmer v Sloveniji
 
-Za vzorec bomo prikazali nekaj podatkov o slovenskih občinah.
+Za projektno nalogo pri predmetu Analiza podatkov v programu R bom prikazala podatke o stanovanjskih razmerah v Sloveniji. Vse podatke, ki sem jih uporabila sem dobila na [Statističnem uradu republike Slovenije](https://www.stat.si/StatWeb/).
 
 ![](slike/crnahisa.png)
 
@@ -36,7 +36,7 @@ Za vzorec bomo prikazali nekaj podatkov o slovenskih občinah.
 source("uvoz/uvoz.r", encoding="UTF-8")
 ```
 
-Uvozila sem podatke o stanovanjskih razmerah v obliki CSV in html s statističnega. Podatke imamo v dveh razpredelnicah v obliki *tidy data*.
+Uvozila sem podatke o stanovanjskih razmerah v obliki CSV in html s statističnega urada. Podatke imamo v dveh razpredelnicah v obliki *tidy data*.
 
 1. `druzine` - podatki o družinah za vsako občino
   - `obcina` - spremenljivka: ime občine (neurejen faktor),
@@ -71,11 +71,9 @@ ggplot(obcine, aes(x=naselja)) + geom_histogram() +
 source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 ```
 
-
 ```{r graf_povprecja_po_regijah, echo=FALSE, fig.align='center'}
 graf_povprecja_po_regijah
 ```
-
 
 Spodnji zemljevid prikazuje povprečno velikost družine za vsako občino.
 
