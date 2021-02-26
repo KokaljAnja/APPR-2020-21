@@ -1,24 +1,29 @@
 library(shiny)
 
 shinyServer(function(input, output) {
-  output$druzine <- DT::renderDataTable({
-    druzine %>% pivot_wider(names_from="velikost.druzine", values_from="stevilo.druzin") %>%
-      rename(`Občina`=obcina)
+  
+  output$prvi_stolpec <- renderPlot({
+    graf.primankljaja <- ggplot(tabelaVI %>%
+                            filter(regija == input$prvi_stolpec)) +
+      aes(x=leto, y=`Delež gospodinjstev`, fill=primanklaji) +
+      coord_flip() +
+      labs( x='Leto', y = 'Delež gospodinjstev') + 
+      geom_col(position="dodge") +
+      theme_dark() +
+      scale_fill_brewer(palette = "BrBG") +
+      scale_x_continuous(breaks = seq(2011, 2019, by=4))
+    print(graf.primankljaja)
   })
   
-  output$pokrajine <- renderUI(
-    selectInput("pokrajina", label="Izberi pokrajino",
-                choices=c("Vse", levels(obcine$pokrajina)))
-  )
-  output$naselja <- renderPlot({
-    main <- "Pogostost števila naselij"
-    if (!is.null(input$pokrajina) && input$pokrajina %in% levels(obcine$pokrajina)) {
-      t <- obcine %>% filter(pokrajina == input$pokrajina)
-      main <- paste(main, "v regiji", input$pokrajina)
-    } else {
-      t <- obcine
-    }
-    ggplot(t, aes(x=naselja)) + geom_histogram() +
-      ggtitle(main) + xlab("Število naselij") + ylab("Število občin")
+  output$drugi_stolpec <- renderPlot({
+    graf.ocene <- ggplot(tabelaVII %>%
+                                  filter(Ocena == input$drugi_stolpec)) +
+      aes(x=Leto, y=Število, fill=Spol) +
+      labs( x='Leto', y = 'Število ocenjenih') +
+      coord_flip() +
+      geom_col(position="dodge") +
+      scale_fill_manual(values=c('darkgoldenrod3', 'cadetblue')) +
+      scale_x_continuous(breaks = seq(2012, 2019, by=1))
+    print(graf.ocene)
   })
 })

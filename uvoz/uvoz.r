@@ -5,6 +5,7 @@ library(tidyr)
 library(dplyr)
 library(rvest)
 
+
 sl <- locale("sl", decimal_mark=",", grouping_mark=".")
 
 
@@ -16,7 +17,7 @@ tabela1 <- read_csv2("podatki/Tabela_1.csv", skip = 1,
                      locale=locale(encoding="Windows-1250"))
 
 #Stopnja preobremenjenosti s stanovanjskimi stroški glede na starost in spol, Slovenija, letno
-tabela5 <- read_csv2("podatki/Tabela_5.csv", skip = 1, 
+tabela5 <- read_csv2("podatki/tabela_5.csv", skip = 1, 
                      col_names = c("stopnja_preobremenjenosti", "starost", "Spol", "leto", "Število prebivalcev"),
                      locale=locale(encoding="Windows-1250"))
 
@@ -25,6 +26,26 @@ url <- "podatki/PrebivalciPoRegijah.htm"
 stran <- read_html(url)
 tabela <- stran %>% html_nodes(xpath = "//table") %>% .[[1]] %>% html_table(fill = TRUE)
 colnames(tabela) <- c("regija", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019")
+
+#Dokaj neuporabna tabela (uporabila sem jo samo za število prebivalcev, kar pa je že prejšna tabela)
+tabela6 <- read_csv2("podatki/Tabela_6.csv", skip = 1, 
+                     col_names = c("Regija", "Leto", "Površina", "Število prebivalcev", "Število moških", "Število žensk", "Gostota"),
+                     locale=locale(encoding="Windows-1250"))
+
+#Število prenaseljenih oseb po regijah, letno
+tabela7 <- read_csv2("podatki/Tabela_7.csv", skip = 1, 
+                     col_names = c("Regija", "Leto", "Število oseb v prenaseljenih stanovanjih"),
+                     locale=locale(encoding="Windows-1250"))
+
+#Stopnja stanovanjske prikrajšanosti glede na regije, letno
+tabela4 <- read_csv2("podatki/Tabela_4.csv", skip = 1, 
+                     col_names = c("regija", "leto", "primanklaji", "Delež gospodinjstev"),
+                     locale=locale(encoding="Windows-1250"))
+
+#Samoocena splošnega zadovoljstva z življenjem glede na stanovanjsko prikrajšanost, po spolu, letno
+tabela8 <- read_csv2("podatki/Tabela_8.csv", skip = 1, 
+                     col_names = c("Spol", "Ocena", "Leto", "Število"),
+                     locale=locale(encoding="Windows-1250"))
 
 
 #PREČIŠČENE TABELE
@@ -52,117 +73,40 @@ tabelaII <- tabela1 %>%
   summarise(povprecje=sum(`Število prebivalcev`)/3)
 
 #Ševilo prebivalcev po regijah (iz tabele, url)
-#tabelaIII <- tabela %>%
-#  slice(4:15) %>%
-#  select(-3, -4, -5, -7, -8, -10) %>%
-#  gather(-regija, key = leto, value = stevilo) %>% group_by(regija) %>% 
-#  summarise(povprecje=sum(`stevilo`)/3)
+tabelaIII <- tabela %>%
+  slice(4:15) %>%
+  select(-3, -4, -5, -7, -8, -10) %>%
+  pivot_longer(c(-regija), names_to="leto", values_to="stevilo",
+               names_transform=c(leto=parse_number),
+               values_transform=c(stevilo=parse_number)) %>%
+  group_by(regija) %>% summarise(povprecje=mean(stevilo)*1000)
 
 #Stopnja preobremenjenosti glede na starost in spol, letno (iz tabele 5)
 tabelaIV <- tabela5 %>%
-  select(-stopnja_preobremenjenosti) %>% mutate(leto = as.integer(leto))
+  select(-stopnja_preobremenjenosti)
 
+#Število prenaseljenih stanovanj po letih
+tabela6 <- tabela6 %>%
+  select(-Površina, -`Število moških`, -`Število žensk`, -`Gostota`) %>%
+  group_by(Leto) %>%
+  summarise(skupaj=sum(`Število prebivalcev`))
 
+tabela7 <- tabela7 %>%
+  group_by(Leto) %>%
+  summarise(skupaj=sum(`Število oseb v prenaseljenih stanovanjih`))
 
+tabelaV <- full_join(tabela6, tabela7, by = "Leto")
 
+#Stopnja stanovanjske prikrajšanosti glede na regije, letno(iz tabele 4)
+tabelaVI <- tabela4 %>% filter(regija !="SLOVENIJA",
+                               leto !="2010",
+                               leto !="2012",
+                               leto !="2013",
+                               leto !="2014",
+                               leto !="2016",
+                               leto !="2017",
+                               leto !="2018")
 
-
-
-
-
-#Še ne uporabljene tabele
-tabela2 <- read_csv2("podatki/Tabela_2.csv", skip = 1, 
-                     col_names = c("leto", "primanklaji", "Tip lastništva", "Število prebivalcev"),
-                     locale=locale(encoding="Windows-1250"))
-
-tabela3 <- read_csv2("podatki/Tabela_3.csv", skip = 1, 
-                     col_names = c("tip gospodinjstva", "leto", "primanklaji", "Število prebivalcev"),
-                     locale=locale(encoding="Windows-1250"))
-
-tabela4 <- read_csv2("podatki/Tabela_4.csv", skip = 1, 
-                     col_names = c("regija", "leto", "primanklaji", "Število prebivalcev"),
-                     locale=locale(encoding="Windows-1250"))
-
-#Še ne urejene tabele
-tabela6 <- read_csv2("podatki/Tabela_6.csv", skip = 1, 
-                     col_names = c("Regija", "Leto", "Površina(km2)", "Število prebivalcev", "Število moških", "Število žensk", "Gostota naseljenosti"),
-                     locale=locale(encoding="Windows-1250"))
-
-tabela7 <- read_csv2("podatki/Tabela_7.csv", skip = 1, 
-                     col_names = c("Regija", "Leto", "Število oseb v prenaseljenih stanovanjih"),
-                     locale=locale(encoding="Windows-1250"))
-
-tabelaV <- inner_join(tabela6, tabela7, by=c("Regija", "Leto")) %>% 
-  select(-`Število moških`, -`Število žensk`)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Funkcija, ki uvozi občine iz Wikipedije
-uvozi.obcine <- function() {
-  link <- "http://sl.wikipedia.org/wiki/Seznam_ob%C4%8Din_v_Sloveniji"
-  stran <- html_session(link) %>% read_html()
-  tabela <- stran %>% html_nodes(xpath="//table[@class='wikitable sortable']") %>%
-    .[[1]] %>% html_table(dec=",")
-  for (i in 1:ncol(tabela)) {
-    if (is.character(tabela[[i]])) {
-      Encoding(tabela[[i]]) <- "UTF-8"
-    }
-  }
-  colnames(tabela) <- c("obcina", "povrsina", "prebivalci", "gostota", "naselja",
-                        "ustanovitev", "pokrajina", "regija", "odcepitev")
-  tabela$obcina <- gsub("Slovenskih", "Slov.", tabela$obcina)
-  tabela$obcina[tabela$obcina == "Kanal ob Soči"] <- "Kanal"
-  tabela$obcina[tabela$obcina == "Loški potok"] <- "Loški Potok"
-  for (col in c("povrsina", "prebivalci", "gostota", "naselja", "ustanovitev")) {
-    if (is.character(tabela[[col]])) {
-      tabela[[col]] <- parse_number(tabela[[col]], na="-", locale=sl)
-    }
-  }
-  for (col in c("obcina", "pokrajina", "regija")) {
-    tabela[[col]] <- factor(tabela[[col]])
-  }
-  return(tabela)
-}
-
-# Funkcija, ki uvozi podatke iz datoteke druzine.csv
-uvozi.druzine <- function(obcine) {
-  data <- read_csv2("podatki/druzine.csv", col_names=c("obcina", 1:4),
-                    locale=locale(encoding="Windows-1250"))
-  data$obcina <- data$obcina %>% strapplyc("^([^/]*)") %>% unlist() %>%
-    strapplyc("([^ ]+)") %>% sapply(paste, collapse=" ") %>% unlist()
-  data$obcina[data$obcina == "Sveti Jurij"] <- iconv("Sveti Jurij ob Ščavnici", to="UTF-8")
-  data <- data %>% pivot_longer(`1`:`4`, names_to="velikost.druzine", values_to="stevilo.druzin")
-  data$velikost.druzine <- parse_number(data$velikost.druzine)
-  data$obcina <- parse_factor(data$obcina, levels=obcine)
-  return(data)
-}
-
-# Zapišimo podatke v razpredelnico obcine
-obcine <- uvozi.obcine()
-
-# Zapišimo podatke v razpredelnico druzine.
-druzine <- uvozi.druzine(levels(obcine$obcina))
-
-# Če bi imeli več funkcij za uvoz in nekaterih npr. še ne bi
-# potrebovali v 3. fazi, bi bilo smiselno funkcije dati v svojo
-# datoteko, tukaj pa bi klicali tiste, ki jih potrebujemo v
-# 2. fazi. Seveda bi morali ustrezno datoteko uvoziti v prihodnjih
-# fazah.
-
+#Samoocena splošnega zadovoljstva z življenjem glede na stanovanjsko prikrajšanost, po spolu, letno(iz tabele 8)
+tabelaVII <- tabela8 %>% filter(Ocena != "Neznano (%)",
+                                Ocena != "Povprečje")
