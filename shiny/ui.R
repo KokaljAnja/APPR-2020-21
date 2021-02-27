@@ -2,19 +2,19 @@ library(shiny)
 
 shinyUI(fluidPage(
   tabsetPanel(
-    tabPanel("Dijaki",
-             titlePanel("Število dijakov v posamezni vrsti izobraževanja"),
+    tabPanel("Primanjkljaj",
+             titlePanel("Delež gospodinjstev glede na element prikrajšanosti"),
              sidebarPanel(
                selectInput(inputId = "prvi_stolpec",
-                           label = "Izberi vrsto izobraževanja",
+                           label = "Izberi regijo",
                            choices = unique(tabelaVI$regija))),
              mainPanel(plotOutput("prvi_stolpec"))),
     
-    tabPanel("Dijaki",
-             titlePanel("Število dijakov v posamezni vrsti izobraževanja"),
+    tabPanel("Samoocena",
+             titlePanel("Samoocena splošnega zadovoljstva z življenjem"),
              sidebarPanel(
                selectInput(inputId = "drugi_stolpec",
-                           label = "Izberi vrsto izobraževanja",
+                           label = "Izberi oceno",
                            choices = unique(tabelaVII$Ocena))),
              mainPanel(plotOutput("drugi_stolpec")))
              

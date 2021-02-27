@@ -15,7 +15,7 @@ povprecje.lastnistva.po.regijah <- tabelaI %>% group_by(regija, `Tip lastništva
 graf_povprecja_po_regijah <- ggplot(data=povprecje.lastnistva.po.regijah, aes(x=regija, y=povprecje, fill=`Tip lastništva`)) +
   geom_col(position = 'dodge') +
   coord_flip() +
-  labs(x = "Regija", y = "Povprečno število(/1000)", title = "Povprečno število tip lastništva na leto \nv posameznih statističnih regijah") +
+  labs(x = "Regija", y = "Povprečno število (/1000)", title = "Povprečno število v posameznih statističnih \nregijah glede na tip lastništva") +
   theme_dark() +
   scale_fill_brewer(palette = "BrBG")
 
@@ -50,7 +50,7 @@ graf2 <- ggplot() + geom_polygon(data=left_join(zemljevid, stanovanje, by=c("NAM
   theme(axis.text.x=element_blank(), axis.ticks.x=element_blank(), axis.text.y=element_blank(),
         axis.ticks.y=element_blank()) +
   guides(fill=guide_colorbar(title="Delež (%)")) +
-  ggtitle("Povprečno število ljudi, ki živi v tro- ali \nvečstanovanjskih objektih") +
+  ggtitle("Povprečen delež ljudi, ki živi v tro ali večstanovanjskih stavbah \npo statističnih regijah v zadnjih desetih letih") +
   labs(x = " ") +
   labs(y = " ") +
   scale_fill_gradient(low = "white", high = "cadetblue",
@@ -64,7 +64,7 @@ graf3 <- ggplot() + geom_polygon(data=left_join(zemljevid, hisa, by=c("NAME_1"="
   theme(axis.text.x=element_blank(), axis.ticks.x=element_blank(), axis.text.y=element_blank(),
         axis.ticks.y=element_blank()) +
   guides(fill=guide_colorbar(title="Delež (%)")) +
-  ggtitle("Povprečno število ljudi, ki živi v eno- ali \ndvostanovanjskih objektih") +
+  ggtitle("Povprečen delež ljudi, ki živi v eno ali dvostanovanjski stavbi \npo statističnih regijah v zadnjih desetih letih") +
   labs(x = " ") +
   labs(y = " ") +
   scale_fill_gradient(low = "white", high = "darkgoldenrod3",

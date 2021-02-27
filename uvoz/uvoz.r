@@ -39,7 +39,7 @@ tabela7 <- read_csv2("podatki/Tabela_7.csv", skip = 1,
 
 #Stopnja stanovanjske prikrajšanosti glede na regije, letno
 tabela4 <- read_csv2("podatki/Tabela_4.csv", skip = 1, 
-                     col_names = c("regija", "leto", "primanklaji", "Delež gospodinjstev"),
+                     col_names = c("regija", "leto", "Primanjkljaji", "Delež gospodinjstev"),
                      locale=locale(encoding="Windows-1250"))
 
 #Samoocena splošnega zadovoljstva z življenjem glede na stanovanjsko prikrajšanost, po spolu, letno
@@ -110,3 +110,4 @@ tabelaVI <- tabela4 %>% filter(regija !="SLOVENIJA",
 #Samoocena splošnega zadovoljstva z življenjem glede na stanovanjsko prikrajšanost, po spolu, letno(iz tabele 8)
 tabelaVII <- tabela8 %>% filter(Ocena != "Neznano (%)",
                                 Ocena != "Povprečje")
+

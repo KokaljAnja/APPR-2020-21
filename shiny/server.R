@@ -5,7 +5,7 @@ shinyServer(function(input, output) {
   output$prvi_stolpec <- renderPlot({
     graf.primankljaja <- ggplot(tabelaVI %>%
                             filter(regija == input$prvi_stolpec)) +
-      aes(x=leto, y=`Delež gospodinjstev`, fill=primanklaji) +
+      aes(x=leto, y=`Delež gospodinjstev`, fill=Primanjkljaji) +
       coord_flip() +
       labs( x='Leto', y = 'Delež gospodinjstev') + 
       geom_col(position="dodge") +
