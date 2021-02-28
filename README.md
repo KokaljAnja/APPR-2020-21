@@ -7,13 +7,54 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2020/21
 
 # Analiza stanovanjskih razmer v Sloveniji
 
-V svoji analizi bom obravnavala pregled nedavne stanovanjske statisitike v Sloveniji, s posebnim poudarkom na vrstah stanovanj, stanovanjskem razmerju (lastništvo ali najem), ter kakovosti in dostopnosti stanovanj. Prav tako bom primerjala kakovost življenja oziroma stanovanj s cenovno dostopnostjo stanovanj. Večina podatkov, ki jih bom uporabljala za projektno nalogo se nahajajo na spletni strani SiStat (Vir: https://pxweb.stat.si/SiStat/sl) in SURS (Vir: https://www.stat.si/statweb). Za konec pa bi rada slovenske razmere stanovanj tudi primerjala z državami Evropske Unije, katere podatke najemo na EuroStatu (Vir: https://ec.europa.eu/eurostat/home).
+V svoji analizi bom obravnavala pregled nedavne stanovanjske statisitike v Sloveniji v zadnjih desetih letih, s posebnim poudarkom na vrstah stanovanj, stanovanjskem razmerju (lastništvo ali najem) in kakovosti stanovanj. Prav tako bom primerjala kakovost življenja oziroma stanovanj s cenovno dostopnostjo stanovanj. Večina podatkov, ki jih bom uporabljala za projektno nalogo se nahajajo na spletni strani SiStat (Vir: https://pxweb.stat.si/SiStat/sl). Za konec pa bi si rada pogledala še samooceno splošnega zadovoljstva z življenjem glede na stanovanjsko prikrajšanost.
 
+Moji podatki bodo v naslednjih tabelah:
 
-## Tematika
+1. Podatki o tipu lastništva za vsako regijo:
 
-Izbrali si boste temo, s katero se bo vaš projekt ukvarjal.
-Tukaj boste napisali, kje ste dobili podatke, ter kakšen je vaš cilj.
+ - Regija
+ - Tip lastništva
+ - Leto
+ - Število prebivalcev
+ 
+2. Podatki o vrstah stavbe za vsako regijo:
+
+ - Regija
+ - Vrsta stavbe
+ - Število prebivalcev
+ 
+3. Podatki o številu prebivalcev za vsako regijo:
+
+ - Regija
+ - Število prebivalcev
+ 
+4. Podatki o cenovni preobremenjenosti glede na spol in starost:
+
+ - Starost
+ - Spol
+ - Leto
+ - Število prebivalcev
+ 
+5. Podatki o prenaseljenosti stanovanj glede na leto:
+
+ - Leto
+ - Število prebivalcev
+ 
+6. Podatki o primanjkljaju za vsako regijo:
+
+ - Regija
+ - Leto
+ - Primanjkljaj (onesnaženost okolja, premalo svetlobe, prisotnost kriminala, slabo stanje stanovanja, težave s hrupom)
+ - Delež gospodinjstev
+ 
+7. Podatki o samooceni splošnega zadovoljstva z življenjem:
+
+ - Spol
+ - Samoocena (0-10)
+ - Leto
+ - Število prebivalcev
+ 
 
 ## Program
 

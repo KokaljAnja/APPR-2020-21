@@ -113,7 +113,13 @@ Zgornja grafa nam prikazujeta povprečno število ljudi, ki živijo v eno, dvo a
 Iz teh dveh grafov je lepo razvidno, da večina prebivalcev Slovenije živi v eno ali dvostanovanjskih stavbah. Boljšo predstavo razmerja pa nam prikazuje spodnji tortni graf. Opazimo, da kar tri četrtine slovencev živi v samostoječih eno oziroma dvodružinskih hišah. 
 
 
-![](pie.jpg)
+```{r pie, echo=FALSE, fig.align='center'}
+slices <- c(1358319, 520386) 
+lbls <- c("Stanovanja v eno ali \ndvostanovanjskih stavbah", "Stanovanja v tro ali \nvečstanovanjskih stavbah")
+pie3D(slices, labels=lbls, explode=0.1, 
+               main="Razmerje med eno ali dvostanovanjsko stavbo \nter tro ali večstanovanjsko stavbo", 
+               col=c("darkgoldenrod3", "cadetblue"))
+```
 
 Slovenci večinoma živimo v lastniških stanovanjih in smo v odstotkih lastniških stanovanj na prebivalca v samem vrhu v Evropski Uniji.
 Iz grafa lahko tudi razberemo, da je najemniških stanovanj v Sloveniji zelo malo. V večini regij je stanovanj z drugimi tipi lastništva, kot so dijaški in študentski domovi ter socialna stanovanja celo več kot pa najemniških stanovanjih.
@@ -143,7 +149,7 @@ source("analiza/analiza.r", encoding="UTF-8")
 graf7
 ```
 
-Zgornji graf nam prikazuje število oseb v prenaseljenih stanovanjih v primerjavi s številom prebivalcev v zadnjih desetih letih. Pri iskanju teh podatkov sem pričakovala konstantno ali pa rahlo narasčujočo krivuljo brez večjih nihanj, kajti pogosto preseljevanje ljudi ni značilno za Slovenijo, še posebaj ne v tako kratkem obdobju. Navdol obrnjena premica prikazuje, da se stanje v Sloveniji kljub naraščanju prebivalcel le povečuje.
+Zgornji graf nam prikazuje število oseb v prenaseljenih stanovanjih v primerjavi s številom prebivalcev v zadnjih desetih letih. Pri iskanju teh podatkov sem pričakovala konstantno ali pa rahlo naraščujočo krivuljo brez večjih nihanj, kajti pogosto preseljevanje ljudi ni značilno za Slovenijo, še posebej ne v tako kratkem obdobju. Navzdol obrnjena premica prikazuje, da se stanje v Sloveniji kljub naraščanju prebivalcev zmanjšuje, kar nakazuje na izboljšanje standarda življenja v Sloveniji. 
 
 ***
 
@@ -154,13 +160,13 @@ Zgornji graf nam prikazuje število oseb v prenaseljenih stanovanjih v primerjav
 shinyAppDir("shiny", options=list(width="100%", height=600))
 ```
 
-Shiny nam v prvem zavihku prikazuje delež gospodinjstev, ki živijo v prikrajšanih stanovanjih glede na posamezne regije. Večina teh gospodinjstev živi v stanovanjih, ki so slabega stanja. V regijah, na primer osrednjeslovenska, ima prav tako veliko ljudi težave s hrupom in onesnaženost okolja, katero močno vplivata na zdravje in učinkovito delo. Zasledila sem tudi, da je prisotnost kriminala precej nizka.
+Shiny nam v prvem zavihku prikazuje delež gospodinjstev, ki živijo v prikrajšanih stanovanjih glede na posamezne regije. Večina teh gospodinjstev živi v stanovanjih, ki so slabega stanja. V regijah, na primer osrednjeslovenska, ima prav tako veliko ljudi težave s hrupom in onesnaženost okolja, katero močno vplivata na zdravje in učinkovito delo. Zasledila sem tudi, da je prisotnost kriminala precej nizka. V splošnem pa je opaziti da se delež gospodinjstev z elementi prikrajšanosti zmanjšuje v Sloveniji. 
 
-V drugem zavihku je prikazana samoocena ocenjenih prebivalstanovanjsko prikrajcev Slovenije, ki je izhajala iz splošnega zadovoljstva z življenjem glede na stanovanjsko prikrajšanost. Resno stanovanjsko prikrajšane so osebe, katerih življenjski pogoji so močno omejeni zaradi omejenih finančnih virov gospodinjstva, in ne zaradi lastne izbire oz. navad. Gre za osebe, ki si ne morejo si privoščiti: rednega plačila hipoteke ali najemnine, rednih stanovanjskih stroškov, odplačevanja kreditov in primerno ogrevanega stanovanja. Ankentiranci so kakovost svojega življenja ocenjevali po lestivici od 0 do 10 in največ jih je ocenilo med 7 in 8.
+V drugem zavihku je prikazana samoocena anketiranih prebivalcev Slovenije, ki je izhajala iz splošnega zadovoljstva z življenjem glede na stanovanjsko prikrajšanost. Resno stanovanjsko prikrajšane so osebe, katerih življenjski pogoji so močno omejeni zaradi omejenih finančnih virov gospodinjstva, in ne zaradi lastne izbire oz. navad. Gre za osebe, ki si ne morejo si privoščiti: rednega plačila hipoteke ali najemnine, rednih stanovanjskih stroškov, odplačevanja kreditov in primerno ogrevanega stanovanja. Ankentiranci so kakovost svojega življenja ocenjevali po lestivici od 0 do 10 in največ jih je ocenilo med 7 in 8.
 
 
 ***
 
 # Zaključek
 
-Glede na vse kazalnike, ki sem jih analizirala sem ugotovila, da je kakovost življenja v Sloveniji glede na stanovanjske razmere precej dobro in da se še izboljšuje. Večina ljudi imajo v lasti svoje hiše, s kateremi niso cenovno močno preobremenjeni. Prav tako imamo veliko socialnih stanovanj. Slovenija na splošno ne temelji za hrupno in onesnaženo stanovanje. Ljudje so tudi zadovoljni. In menim, da je Slovenija odlična območje za življenje v bolj tihih in prostornih območjih.
+Glede na vse kazalnike, ki sem jih analizirala sem ugotovila, da je kakovost življenja v Sloveniji glede na stanovanjske razmere precej dobra in da se še izboljšuje. Večina ljudi ima v lasti svoje hiše, s kateremi niso cenovno močno preobremenjeni. Prav tako imamo veliko socialnih stanovanj. Med elementi prikrajšanosti stanovanj prednjači slabo stanje stanovanja, sledijo pa mu težave s hrupom, večina stanovanj pa je ustrezno ogrevana. V splošnem so državljani zadovoljni z življnenjem v državi na kar kažejo tudi visoke ocene zadovoljstva.

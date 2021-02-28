@@ -73,17 +73,6 @@ graf3 <- ggplot() + geom_polygon(data=left_join(zemljevid, hisa, by=c("NAME_1"="
   theme_dark()
 
 
-#4.graf (PRIMERJAVA-VRSTA STAVBE)
-
-slices <- c(1358319, 520386) 
-lbls <- c("Stanovanja v eno ali \ndvostanovanjskih stavbah", "Stanovanja v tro- ali več \nstanovanjskih stavbah")
-png(file = "pie.jpg")
-torta <- pie3D(slices, labels=lbls, explode=0.1, 
-               main="Razmerje med eno ali dvo stanovanjsko stavbo \nter tro ali več stanovanjsko stavbo", 
-               col=c("darkgoldenrod3", "cadetblue"))
-dev.off
-
-
 #5.graf (STOPNJA PREOBREMENJENOSTI)
 
 graf_st.preobremenjenosti <- ggplot(data=tabelaIV, aes(x=leto, y=`Število prebivalcev`, col=Spol)) +
